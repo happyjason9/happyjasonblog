@@ -1,0 +1,118 @@
+.avatarContainer {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  /* 防止容器阻擋點擊，內部元素再打開 */
+}
+
+.robot {
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.3));
+}
+
+.robot:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 15px rgba(0, 243, 255, 0.6));
+}
+
+.jump {
+  animation: jumpAnim 0.5s ease;
+}
+
+@keyframes jumpAnim {
+  0% {
+    transform: scale(1.1) translateY(0);
+  }
+
+  50% {
+    transform: scale(1.1) translateY(-20px);
+  }
+
+  100% {
+    transform: scale(1.1) translateY(0);
+  }
+}
+
+/* 霓虹特效區 */
+.headGlow {
+  filter: drop-shadow(0 0 5px rgba(0, 243, 255, 0.5));
+}
+
+.antennaGlow {
+  animation: pulseMagenta 2s infinite alternate;
+}
+
+.pupil {
+  filter: drop-shadow(0 0 3px rgba(0, 243, 255, 0.8));
+  transition: cx 0.1s ease-out, cy 0.1s ease-out;
+  /* 讓眼球移動更滑順不會太生硬 */
+}
+
+.corePulse {
+  animation: pulseMagenta 1.5s infinite alternate;
+  filter: drop-shadow(0 0 5px rgba(255, 0, 234, 0.6));
+}
+
+@keyframes pulseMagenta {
+  from {
+    opacity: 0.6;
+    r: 4;
+  }
+
+  to {
+    opacity: 1;
+    r: 6;
+  }
+}
+
+/* 說話泡泡 */
+.speechBubble {
+  pointer-events: auto;
+  position: absolute;
+  bottom: 110px;
+  /* 在機器人頭上 */
+  left: 50px;
+  background: rgba(10, 10, 25, 0.85);
+  border: 1px solid var(--accent-magenta);
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 12px 12px 12px 0;
+  /* 左下角尖尖的 */
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 0 15px rgba(255, 0, 234, 0.3);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  transform: translateY(10px) scale(0.9);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+}
+
+/* 泡泡小尾巴 */
+.speechBubble::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: -1px;
+  width: 12px;
+  height: 12px;
+  background: rgba(10, 10, 25, 0.85);
+  border-right: 1px solid var(--accent-magenta);
+  border-bottom: 1px solid var(--accent-magenta);
+  clip-path: polygon(100% 0, 0 100%, 100% 100%);
+}
+
+.showBubble {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
