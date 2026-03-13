@@ -4,11 +4,12 @@ import { useEffect, useState, useRef } from "react";
 import styles from "./Avatar.module.css";
 
 export default function Avatar() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isClicked, setIsClicked] = useState(false);
   const [message, setMessage] = useState("");
   const leftEyeRef = useRef<SVGCircleElement>(null);
   const rightEyeRef = useRef<SVGCircleElement>(null);
+  const leftPupilRef = useRef<SVGCircleElement>(null);
+  const rightPupilRef = useRef<SVGCircleElement>(null);
 
   const messages = [
     "嗨！我是你的專屬導覽員 🤖",
@@ -19,12 +20,47 @@ export default function Avatar() {
   ];
 
   useEffect(() => {
+    let animationFrameId: number;
+
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+      
+      animationFrameId = requestAnimationFrame(() => {
+        const updatePupil = (eye: SVGCircleElement | null, pupil: SVGCircleElement | null, baseX: number, baseY: number) => {
+          if (!eye || !pupil) return;
+          const rect = eye.getBoundingClientRect();
+          const eyeCenterX = rect.left + rect.width / 2;
+          const eyeCenterY = rect.top + rect.height / 2;
+
+          const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
+          const maxOffset = 6;
+          let offsetX = Math.cos(angle) * maxOffset;
+          let offsetY = Math.sin(angle) * maxOffset;
+
+          const distance = Math.sqrt(Math.pow(e.clientX - eyeCenterX, 2) + Math.pow(e.clientY - eyeCenterY, 2));
+          if (distance < 20) {
+            offsetX = 0;
+            offsetY = 0;
+          }
+
+          pupil.setAttribute("cx", (baseX + offsetX).toString());
+          pupil.setAttribute("cy", (baseY + offsetY).toString());
+        };
+
+        updatePupil(leftEyeRef.current, leftPupilRef.current, 40, 37);
+        updatePupil(rightEyeRef.current, rightPupilRef.current, 60, 37);
+      });
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
   }, []);
 
   const handleClick = () => {
@@ -39,33 +75,6 @@ export default function Avatar() {
       setMessage("");
     }, 3000);
   };
-
-  // 計算瞳孔位置
-  const calculatePupilOffset = (eyeRef: React.RefObject<SVGCircleElement>) => {
-    if (!eyeRef.current) return { x: 0, y: 0 };
-    const rect = eyeRef.current.getBoundingClientRect();
-    const eyeCenterX = rect.left + rect.width / 2;
-    const eyeCenterY = rect.top + rect.height / 2;
-
-    // 計算滑鼠與眼睛中心的角度
-    const angle = Math.atan2(mousePos.y - eyeCenterY, mousePos.x - eyeCenterX);
-
-    // 限制瞳孔只能在一定半徑內移動 (例如 5px)
-    const maxOffset = 6;
-    const offsetX = Math.cos(angle) * maxOffset;
-    const offsetY = Math.sin(angle) * maxOffset;
-
-    // 如果滑鼠非常靠近，則不偏移太多
-    const distance = Math.sqrt(Math.pow(mousePos.x - eyeCenterX, 2) + Math.pow(mousePos.y - eyeCenterY, 2));
-    if (distance < 20) {
-      return { x: 0, y: 0 };
-    }
-
-    return { x: offsetX, y: offsetY };
-  };
-
-  const leftOffset = calculatePupilOffset(leftEyeRef as React.RefObject<SVGCircleElement>);
-  const rightOffset = calculatePupilOffset(rightEyeRef as React.RefObject<SVGCircleElement>);
 
   return (
     <div className={styles.avatarContainer}>
@@ -95,20 +104,22 @@ export default function Avatar() {
           <rect x="30" y="25" width="40" height="25" rx="5" fill="#030014" />
 
           {/* 眼睛包裝器 (白眼球部分為隱形或稍微發亮) */}
-          <circle ref={leftEyeRef as React.RefObject<SVGCircleElement>} cx="40" cy="37" r="8" fill="rgba(0, 243, 255, 0.1)" />
-          <circle ref={rightEyeRef as React.RefObject<SVGCircleElement>} cx="60" cy="37" r="8" fill="rgba(0, 243, 255, 0.1)" />
+          <circle ref={leftEyeRef} cx="40" cy="37" r="8" fill="rgba(0, 243, 255, 0.1)" />
+          <circle ref={rightEyeRef} cx="60" cy="37" r="8" fill="rgba(0, 243, 255, 0.1)" />
 
           {/* 瞳孔 (會追蹤滑鼠) */}
           <circle
-            cx={40 + leftOffset.x}
-            cy={37 + leftOffset.y}
+            ref={leftPupilRef}
+            cx="40"
+            cy="37"
             r="4"
             fill="var(--accent-cyan)"
             className={styles.pupil}
           />
           <circle
-            cx={60 + rightOffset.x}
-            cy={37 + rightOffset.y}
+            ref={rightPupilRef}
+            cx="60"
+            cy="37"
             r="4"
             fill="var(--accent-cyan)"
             className={styles.pupil}

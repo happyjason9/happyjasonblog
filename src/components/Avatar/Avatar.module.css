@@ -51,8 +51,7 @@
 
 .pupil {
   filter: drop-shadow(0 0 3px rgba(0, 243, 255, 0.8));
-  transition: cx 0.1s ease-out, cy 0.1s ease-out;
-  /* 讓眼球移動更滑順不會太生硬 */
+  /* 移除 transition 延遲以實現即時跟隨 (Real-time tracking) */
 }
 
 .corePulse {
