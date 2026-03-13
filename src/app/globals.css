@@ -25,6 +25,13 @@
   padding: 0;
 }
 
+/* 隱藏預設游標，使用自定義游標 */
+@media (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
 body {
   background-color: var(--bg-color);
   color: var(--text-primary);

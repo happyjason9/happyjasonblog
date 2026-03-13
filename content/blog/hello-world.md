@@ -2,6 +2,7 @@
 title: "建立我的第一個 Next.js 現代化網站"
 date: "2026-03-13"
 excerpt: "分享我如何使用 Next.js App Router 與 MDX，零資料庫打造極速個人的部落格。"
+tags: ["Next.js", "MDX", "部落格"]
 ---
 
 # 歡迎來到我的新部落格！

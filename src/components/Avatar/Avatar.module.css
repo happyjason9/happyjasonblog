@@ -115,3 +115,26 @@
   opacity: 1;
   transform: translateY(0) scale(1);
 }
+
+/* 粒子爆炸 */
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  bottom: 50px;
+  left: 50px;
+  pointer-events: none;
+  animation: particleFly 0.75s ease-out forwards;
+}
+
+@keyframes particleFly {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) scale(0);
+  }
+}

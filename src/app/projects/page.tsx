@@ -1,5 +1,7 @@
 import styles from "./page.module.css";
 import { Metadata } from "next";
+import TiltCard from "@/components/TiltCard/TiltCard";
+import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "專案作品集 | Jason",
@@ -30,20 +32,29 @@ const projects = [
 export default function Projects() {
   return (
     <div className={styles.projectsContainer}>
-      <h1 className={styles.pageTitle}>專案作品集</h1>
-      <p className={styles.pageSubtitle}>這裡收集了我過去參與與主導的 side projects</p>
-      
+      <ScrollReveal>
+        <h1 className={styles.pageTitle}>專案作品集</h1>
+        <p className={styles.pageSubtitle}>這裡收集了我過去參與與主導的 side projects</p>
+      </ScrollReveal>
+
       <div className={styles.grid}>
         {projects.map((project, index) => (
-          <a key={index} href={project.link} target="_blank" rel="noopener noreferrer" className={`glass-panel ${styles.card}`}>
-            <h2>{project.title}</h2>
-            <p>{project.description}</p>
-            <div className={styles.tags}>
-              {project.tags.map(tag => (
-                <span key={tag} className={styles.tag}>{tag}</span>
-              ))}
-            </div>
-          </a>
+          <ScrollReveal key={index} delay={index * 100}>
+            <TiltCard
+              className={`glass-panel ${styles.card}`}
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <h2>{project.title}</h2>
+              <p>{project.description}</p>
+              <div className={styles.tags}>
+                {project.tags.map((tag) => (
+                  <span key={tag} className={styles.tag}>{tag}</span>
+                ))}
+              </div>
+            </TiltCard>
+          </ScrollReveal>
         ))}
       </div>
     </div>

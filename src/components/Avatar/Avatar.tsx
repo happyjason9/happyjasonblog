@@ -3,9 +3,12 @@
 import { useEffect, useState, useRef } from "react";
 import styles from "./Avatar.module.css";
 
+type Particle = { id: number; angle: number; color: string; distance: number };
+
 export default function Avatar() {
   const [isClicked, setIsClicked] = useState(false);
   const [message, setMessage] = useState("");
+  const [particles, setParticles] = useState<Particle[]>([]);
   const leftEyeRef = useRef<SVGCircleElement>(null);
   const rightEyeRef = useRef<SVGCircleElement>(null);
   const leftPupilRef = useRef<SVGCircleElement>(null);
@@ -69,7 +72,16 @@ export default function Avatar() {
     const randomMsg = messages[Math.floor(Math.random() * messages.length)];
     setMessage(randomMsg);
 
-    // 動畫與泡泡顯示時間
+    // 粒子爆炸效果
+    const newParticles: Particle[] = Array.from({ length: 12 }, (_, i) => ({
+      id: Date.now() + i,
+      angle: (i / 12) * 360,
+      color: i % 2 === 0 ? "var(--accent-cyan)" : "var(--accent-magenta)",
+      distance: 40 + Math.random() * 25,
+    }));
+    setParticles(newParticles);
+    setTimeout(() => setParticles([]), 800);
+
     setTimeout(() => {
       setIsClicked(false);
       setMessage("");
@@ -82,6 +94,24 @@ export default function Avatar() {
       <div className={`${styles.speechBubble} ${message ? styles.showBubble : ""}`}>
         {message}
       </div>
+
+      {/* 粒子爆炸 */}
+      {particles.map((p) => {
+        const tx = Math.cos((p.angle * Math.PI) / 180) * p.distance;
+        const ty = Math.sin((p.angle * Math.PI) / 180) * p.distance;
+        return (
+          <span
+            key={p.id}
+            className={styles.particle}
+            style={{
+              backgroundColor: p.color,
+              boxShadow: `0 0 6px ${p.color}`,
+              ["--tx" as string]: `${tx}px`,
+              ["--ty" as string]: `${ty}px`,
+            }}
+          />
+        );
+      })}
 
       {/* 機器人 SVG Avatar */}
       <div

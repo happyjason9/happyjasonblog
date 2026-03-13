@@ -3,6 +3,11 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
+import PointCloud from "@/components/PointCloud/PointCloud";
+import Avatar from "@/components/Avatar/Avatar";
+import CustomCursor from "@/components/CustomCursor/CustomCursor";
+import BackToTop from "@/components/BackToTop/BackToTop";
+import PageTransition from "@/components/PageTransition/PageTransition";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -14,9 +19,6 @@ export const metadata: Metadata = {
   description: "科技業軟體工程師，分享程式教學與開發筆記",
 };
 
-import PointCloud from "@/components/PointCloud/PointCloud";
-import Avatar from "@/components/Avatar/Avatar";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,9 +29,11 @@ export default function RootLayout({
       <body className={`${inter.variable}`}>
         <PointCloud />
         <Avatar />
+        <CustomCursor />
+        <BackToTop />
         <Navbar />
         <main className="container">
-          {children}
+          <PageTransition>{children}</PageTransition>
         </main>
         <Footer />
       </body>

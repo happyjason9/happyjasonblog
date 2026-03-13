@@ -9,6 +9,7 @@ export type PostMeta = {
   date: string;
   excerpt: string;
   slug: string;
+  tags?: string[];
 };
 
 export const getPostBySlug = (slug: string) => {

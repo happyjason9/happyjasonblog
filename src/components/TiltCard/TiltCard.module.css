@@ -1,0 +1,14 @@
+.wrapper {
+  display: block;
+}
+
+.tilt {
+  transition: transform 0.15s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.tilt:hover {
+  border-color: var(--accent-cyan) !important;
+  box-shadow: var(--neon-glow-hover) !important;
+}

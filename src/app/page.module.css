@@ -17,6 +17,22 @@
   letter-spacing: -1.5px;
 }
 
+.cursor {
+  display: inline-block;
+  color: var(--accent-cyan);
+  font-weight: 300;
+  text-shadow: 0 0 10px rgba(0, 243, 255, 0.8);
+}
+
+.cursorBlink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 .subtitle {
   font-size: 1.35rem;
   color: var(--text-secondary);
@@ -88,12 +104,25 @@
   color: var(--text-primary);
   border: 1px solid var(--glass-border);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .skillCard:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px) scale(1.04);
   border-color: var(--accent-cyan);
   box-shadow: var(--neon-glow-hover);
   color: var(--accent-cyan);
   text-shadow: 0 0 10px rgba(0, 243, 255, 0.6);
+}
+
+.skillIcon {
+  font-size: 1.8rem;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.skillCard:hover .skillIcon {
+  transform: scale(1.3) rotate(-5deg);
 }

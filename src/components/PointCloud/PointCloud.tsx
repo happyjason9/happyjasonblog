@@ -30,7 +30,8 @@ export default function PointCloud() {
     };
 
     const particles: Particle[] = [];
-    const particleCount = 120; // 稍微增加點數量讓連線更好看
+    const isMobile = window.innerWidth < 768;
+    const particleCount = isMobile ? 50 : 120;
 
     // 初始化點雲，記錄初始位置 (baseX, baseY)
     for (let i = 0; i < particleCount; i++) {
