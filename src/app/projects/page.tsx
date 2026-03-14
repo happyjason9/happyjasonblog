@@ -1,7 +1,7 @@
 import styles from "./page.module.css";
 import { Metadata } from "next";
-import TiltCard from "@/components/TiltCard/TiltCard";
-import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
+import TiltCard from "@/components/ui/TiltCard/TiltCard";
+import ScrollReveal from "@/components/ui/ScrollReveal/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "專案作品集 | Jason",

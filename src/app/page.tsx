@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "./page.module.css";
-import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
+import ScrollReveal from "@/components/ui/ScrollReveal/ScrollReveal";
 
 const skills = [
   { name: "React", icon: "⚛️" },

@@ -1,7 +1,7 @@
 import { getAllPostsMeta } from "@/lib/mdx";
 import styles from "./page.module.css";
-import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
-import BlogList from "@/components/BlogList/BlogList";
+import ScrollReveal from "@/components/ui/ScrollReveal/ScrollReveal";
+import BlogList from "@/components/features/BlogList/BlogList";
 
 export default function Blog() {
   const posts = getAllPostsMeta();

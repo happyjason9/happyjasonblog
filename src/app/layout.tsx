@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar/Navbar";
-import Footer from "@/components/Footer/Footer";
-import PointCloud from "@/components/PointCloud/PointCloud";
-import Avatar from "@/components/Avatar/Avatar";
-import BackToTop from "@/components/BackToTop/BackToTop";
-import PageTransition from "@/components/PageTransition/PageTransition";
+import Navbar from "@/components/layout/Navbar/Navbar";
+import Footer from "@/components/layout/Footer/Footer";
+import PointCloud from "@/components/features/PointCloud/PointCloud";
+import Avatar from "@/components/features/Avatar/Avatar";
+import BackToTop from "@/components/ui/BackToTop/BackToTop";
+import PageTransition from "@/components/ui/PageTransition/PageTransition";
 
 const inter = Inter({
   variable: "--font-inter",

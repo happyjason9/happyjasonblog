@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import styles from "./page.module.css";
 import Link from "next/link";
 import { Metadata } from "next";
-import ReadingProgress from "@/components/ReadingProgress/ReadingProgress";
+import ReadingProgress from "@/components/features/ReadingProgress/ReadingProgress";
 
 export async function generateStaticParams() {
   const posts = getAllPostsMeta();
