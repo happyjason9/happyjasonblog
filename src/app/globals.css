@@ -95,6 +95,12 @@ main {
   padding: 0 2rem;
 }
 
+@media (max-width: 768px) {
+  .pointcloud-canvas {
+    display: none;
+  }
+}
+
 @media (max-width: 640px) {
   .container {
     padding: 0 1.25rem;

@@ -6,6 +6,7 @@ export default function PointCloud() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    if (window.innerWidth < 768) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -159,14 +160,15 @@ export default function PointCloud() {
   return (
     <canvas
       ref={canvasRef}
+      className="pointcloud-canvas"
       style={{
         position: "fixed",
         top: 0,
         left: 0,
         width: "100%",
         height: "100%",
-        zIndex: -1, // 放置於最底層
-        pointerEvents: "none", // 讓下面這層特效不阻擋滑鼠點擊 Navbar/卡片
+        zIndex: -1,
+        pointerEvents: "none",
       }}
     />
   );

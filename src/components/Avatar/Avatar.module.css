@@ -10,6 +10,12 @@
   /* 防止容器阻擋點擊，內部元素再打開 */
 }
 
+@media (max-width: 768px) {
+  .avatarContainer {
+    display: none;
+  }
+}
+
 .robot {
   cursor: pointer;
   pointer-events: auto;
