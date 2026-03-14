@@ -5,7 +5,6 @@ import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import PointCloud from "@/components/PointCloud/PointCloud";
 import Avatar from "@/components/Avatar/Avatar";
-import CustomCursor from "@/components/CustomCursor/CustomCursor";
 import BackToTop from "@/components/BackToTop/BackToTop";
 import PageTransition from "@/components/PageTransition/PageTransition";
 
@@ -29,7 +28,6 @@ export default function RootLayout({
       <body className={`${inter.variable}`}>
         <PointCloud />
         <Avatar />
-        <CustomCursor />
         <BackToTop />
         <Navbar />
         <main className="container">

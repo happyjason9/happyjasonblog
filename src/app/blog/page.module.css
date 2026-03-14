@@ -57,3 +57,22 @@
   text-align: center;
   padding: 4rem 0;
 }
+
+@media (max-width: 640px) {
+  .pageTitle {
+    font-size: 2rem;
+  }
+
+  .pageSubtitle {
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .postCard {
+    padding: 1.25rem;
+  }
+
+  .postCard h2 {
+    font-size: 1.2rem;
+  }
+}
