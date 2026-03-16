@@ -37,6 +37,7 @@ const Navbar = () => {
           <li><Link href="/" className={styles.navItem} onClick={closeMenu}>首頁</Link></li>
           <li><Link href="/projects" className={styles.navItem} onClick={closeMenu}>作品</Link></li>
           <li><Link href="/blog" className={styles.navItem} onClick={closeMenu}>部落格</Link></li>
+          <li><Link href="/tools" className={styles.navItem} onClick={closeMenu}>小工具</Link></li>
         </ul>
       </div>
     </nav>

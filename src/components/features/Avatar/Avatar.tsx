@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import { usePathname } from "next/navigation";
 import styles from "./Avatar.module.css";
 
 type Particle = { id: number; angle: number; color: string; distance: number };
 
 export default function Avatar() {
+  const pathname = usePathname();
   const [isClicked, setIsClicked] = useState(false);
   const [message, setMessage] = useState("");
   const [particles, setParticles] = useState<Particle[]>([]);
@@ -87,6 +89,8 @@ export default function Avatar() {
       setMessage("");
     }, 3000);
   };
+
+  if (pathname.startsWith("/tools")) return null;
 
   return (
     <div className={styles.avatarContainer}>

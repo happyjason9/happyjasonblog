@@ -83,7 +83,7 @@ ul {
 
 main {
   flex: 1;
-  padding: 4rem 0;
+  padding: 4rem 0 6rem;
   /* 確保主要內容位於背景之上 */
   position: relative;
   z-index: 10;
