@@ -10,10 +10,6 @@ export const metadata: Metadata = {
 export default function ImageComparePage() {
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>圖片比較工具</h1>
-      <p className={styles.subtitle}>
-        上傳兩張圖片，移動滑鼠即可同步放大鏡對比細節
-      </p>
       <ImageCompareTool />
     </div>
   );

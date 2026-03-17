@@ -30,7 +30,7 @@ export default function RootLayout({
         <Avatar />
         <BackToTop />
         <Navbar />
-        <main className="container">
+        <main>
           <PageTransition>{children}</PageTransition>
         </main>
         <Footer />

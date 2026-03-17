@@ -10,6 +10,14 @@ export const metadata: Metadata = {
 
 const tools = [
   {
+    title: "標注工具",
+    description: "載入圖片或資料夾，用滑鼠框選物件建立 Bounding Box，支援匯出 JSON 標注檔。",
+    tags: ["圖片", "標注", "BBox"],
+    link: "/tools/bbox-annotator",
+    emoji: "🏷️",
+    internal: true,
+  },
+  {
     title: "圖片比較工具",
     description: "雙圖同步放大鏡比較，上傳兩張圖片後移動滑鼠即可對比細節差異。",
     tags: ["圖片", "比較", "放大鏡"],

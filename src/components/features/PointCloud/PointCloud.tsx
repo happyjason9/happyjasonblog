@@ -52,9 +52,12 @@ export default function PointCloud() {
 
     let animationFrameId: number;
 
+    const handleVisibilityChange = () => {};
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
     const render = () => {
-      // 帶一點拖影效果
-      ctx.fillStyle = "rgba(3, 0, 20, 0.25)";
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = "rgb(3, 0, 20)";
       ctx.fillRect(0, 0, width, height);
 
       particles.forEach((p, i) => {
@@ -154,6 +157,7 @@ export default function PointCloud() {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseout", handleMouseLeave);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, []);
 
