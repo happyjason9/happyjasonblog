@@ -10,6 +10,14 @@ export const metadata: Metadata = {
 
 const tools = [
   {
+    title: "影音剪輯器",
+    description: "瀏覽器內影音剪輯工具，支援裁切、文字疊加與導出 WebM。全程本地端處理，不上傳任何檔案。",
+    tags: ["影片裁切", "文字疊加", "WebM 導出"],
+    link: "/tools/video-editor",
+    emoji: "🎬",
+    internal: true,
+  },
+  {
     title: "標注工具",
     description: "載入圖片或資料夾，用滑鼠框選物件建立 Bounding Box，支援匯出 JSON 標注檔。",
     tags: ["圖片", "標注", "BBox"],
